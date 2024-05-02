@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://bekd2i1pnw0xh"]
+
+[ext_resource type="Script" path="res://exp.gd" id="1_er53o"]
+
+[node name="bomb explode" type="Node2D"]
+
+[node name="exp" type="CPUParticles2D" parent="."]
+scale = Vector2(4, 4)
+emitting = false
+amount = 20
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+emission_shape = 1
+emission_sphere_radius = 5.0
+spread = 180.0
+gravity = Vector2(0, 20)
+angular_velocity_max = 20.0
+angle_max = 356.6
+scale_amount_min = 4.0
+scale_amount_max = 4.0
+color = Color(1, 0, 0, 1)
+script = ExtResource("1_er53o")

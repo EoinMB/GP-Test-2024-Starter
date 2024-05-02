@@ -1,3 +1,74 @@
-[gd_scene format=3 uid="uid://bunyohpobvu8b"]
+[gd_scene load_steps=10 format=3 uid="uid://bunyohpobvu8b"]
+
+[ext_resource type="Script" path="res://instance.gd" id="1_dxxcl"]
+[ext_resource type="Texture2D" uid="uid://rb8smo0f45mc" path="res://icon.svg" id="1_epqra"]
+[ext_resource type="Script" path="res://HSlider.gd" id="2_rgm8f"]
+[ext_resource type="Script" path="res://shoot.gd" id="3_c7r66"]
+[ext_resource type="Texture2D" uid="uid://bbugfs5lrsqkk" path="res://sprites/bombbutton1.png" id="4_xlqur"]
+[ext_resource type="Texture2D" uid="uid://cy5yxok7w7rjt" path="res://sprites/bombbutton2.png" id="5_6yjc0"]
+[ext_resource type="Script" path="res://CharacterBody2D.gd" id="6_x1hxc"]
+[ext_resource type="Texture2D" uid="uid://bbo8qci0d7133" path="res://sounds/floor.png" id="8_g56wt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sfev0"]
+size = Vector2(251, 8)
 
 [node name="root" type="Node2D"]
+script = ExtResource("1_dxxcl")
+
+[node name="Icon" type="Sprite2D" parent="."]
+position = Vector2(500, 500)
+texture = ExtResource("1_epqra")
+
+[node name="HSlider" type="HSlider" parent="."]
+offset_left = 79.0
+offset_top = 41.0
+offset_right = 367.0
+offset_bottom = 57.0
+min_value = 1.0
+max_value = 8.0
+value = 1.0
+script = ExtResource("2_rgm8f")
+
+[node name="count" type="RichTextLabel" parent="HSlider"]
+layout_mode = 0
+offset_left = 300.0
+offset_top = -4.0
+offset_right = 480.0
+offset_bottom = 36.0
+text = "0"
+
+[node name="label" type="RichTextLabel" parent="HSlider"]
+layout_mode = 0
+offset_left = -62.0
+offset_top = -6.0
+offset_right = 33.0
+offset_bottom = 34.0
+text = "count:"
+
+[node name="Node" type="Node" parent="."]
+
+[node name="`shoot" type="Sprite2D" parent="."]
+script = ExtResource("3_c7r66")
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+texture_filter = 1
+position = Vector2(159, 77)
+scale = Vector2(4, 4)
+texture_normal = ExtResource("4_xlqur")
+texture_pressed = ExtResource("5_6yjc0")
+action = "ui_accept"
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("6_x1hxc")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(514, 892)
+scale = Vector2(4, 4)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-0.5, -3)
+shape = SubResource("RectangleShape2D_sfev0")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture_filter = 1
+texture = ExtResource("8_g56wt")
